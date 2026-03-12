@@ -14,10 +14,10 @@ public class HomePage extends BasePage{
 		super(driver);
 	}
 	
-@FindBy(xpath="//*[@id=\"top\"]/div/div[2]/ul/li[2]/div/a/span") 
+@FindBy(xpath="//span[normalize-space()='My Account']") 
 WebElement lnkMyaccount;
 
-@FindBy(xpath="//*[@id=\"top\"]/div/div[2]/ul/li[2]/div/ul/li[1]/a") 
+@FindBy(xpath="//a[normalize-space()='Register']") 
 WebElement lnkRegister;
 
 
