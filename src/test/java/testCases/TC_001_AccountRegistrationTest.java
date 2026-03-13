@@ -12,25 +12,8 @@ import pageObjects.AccountRegistrationPage;
 import pageObjects.HomePage;
 import testBase.BasePage;
 
-public class TC_001_AccountRegistrationTest {
-	public WebDriver driver;
+public class TC_001_AccountRegistrationTest extends BaseClass {
 
-	@BeforeClass
-	void setup() {
-		driver=new ChromeDriver();
-		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		
-		driver.get("https://tutorialsninja.com/demo/");
-		driver.manage().window().maximize();
-		
-	}
-	
-	@AfterClass
-	void teardown() {
-		driver.quit();
-		
-	}
 	@Test
 	void verify_account_registration() {
 		
@@ -42,13 +25,13 @@ public class TC_001_AccountRegistrationTest {
 
 		regpage.setFirstName("mahesh");
 		regpage.setLastName("thampu");
-		regpage.setEmail(randomeString().toUpperCase()+"@gmail.com");// randomly generated the email
-		regpage.setTelephone("1234567890");
+		regpage.setEmail(randomString().toUpperCase()+"@gmail.com");// randomly generated the email
+		regpage.setTelephone(randomnum());
 		
-		//String password=randomAlphaNumeric();
+		String password=randomAlphaNum();
 		
-		regpage.setPassword("mym125135");
-		regpage.setConfirmPassword("mym125135");
+		regpage.setPassword(password);
+		regpage.setConfirmPassword(password);
 		
 		regpage.setPrivacyPolicy();
 		regpage.clickContinue();
@@ -57,10 +40,6 @@ public class TC_001_AccountRegistrationTest {
 		Assert.assertEquals(confmsg, "Your Account Has Been Created!");
 
 		
-	}
-	public String randomeString() {
-		String Generated=RandomStringUtils.randomAlphabetic(5);
-		return Generated;
 	}
 
 	
