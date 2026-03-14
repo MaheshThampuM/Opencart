@@ -1,6 +1,9 @@
 package testCases;
 
+import java.lang.System.Logger;
+
 import java.time.Duration;
+
 import org.testng.Assert;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +20,8 @@ public class TC_001_AccountRegistrationTest extends BaseClass {
 	@Test
 	void verify_account_registration() {
 		
+		logger.info("Started test case");
+		try {
 		HomePage hp =new HomePage(driver);
 		hp.clickMyAccount();
 		hp.clickRegister();
@@ -37,11 +42,26 @@ public class TC_001_AccountRegistrationTest extends BaseClass {
 		regpage.clickContinue();
 		
 		String confmsg=regpage.getConfirmationMsg();
-		Assert.assertEquals(confmsg, "Your Account Has Been Created!");
-
+		
+		if(confmsg.equals("Your Account Has Been Created!")) {
+			Assert.assertTrue(true);
+		}
+		else 
+		{
+			Assert.assertTrue(false);
+			logger.error("Test failed");
+			
+		}
+		//Assert.assertEquals(confmsg, "Account Has Been Created!");
+		}
+		catch (Exception e) 
+		{
+			Assert.fail();
+		}
+			
+			logger.info("finised");
 		
 	}
-
-	
+		
 
 }
